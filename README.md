@@ -1,2 +1,2 @@
 # music
-learn keyboard here!
+learn music, mainly keyboard here!
