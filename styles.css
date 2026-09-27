@@ -180,9 +180,6 @@ p {
 .keyboard-frame {
   margin: 40px auto 0;
   max-width: 760px;
-  border: 2px solid var(--line-strong);
-  background: var(--ivory-dim);
-  padding: 28px 20px 18px;
 }
 
 .keyboard-caption {
@@ -222,6 +219,71 @@ p {
 
 .btn-secondary:hover {
   background: var(--ivory-dim);
+}
+
+/* ---------------- Sections / cards ---------------- */
+
+.section {
+  padding: 52px 0;
+  border-top: 1px solid var(--line);
+}
+
+.section-head {
+  max-width: 60ch;
+  margin-bottom: 32px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 22px;
+}
+
+.card {
+  border: 1px solid var(--line);
+  background: var(--ivory-dim);
+  padding: 24px 22px;
+}
+
+.card .index {
+  display: inline-block;
+  font-family: var(--serif);
+  font-style: italic;
+  color: var(--brass-dark);
+  margin-bottom: 8px;
+}
+
+.card h2,
+.card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 8px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 0.96rem;
+}
+
+/* ---------------- Note / key reference table ---------------- */
+
+.ref-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.ref-table th,
+.ref-table td {
+  text-align: left;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.95rem;
+}
+
+.ref-table th {
+  font-family: var(--serif);
+  font-weight: 600;
+  color: var(--ebony);
 }
 
 /* ---------------- Footer ---------------- */
@@ -296,5 +358,143 @@ p {
 
   * {
     transition: none !important;
+  }
+}
+
+/* ---------------- Question form ---------------- */
+
+.question-form {
+  max-width: 560px;
+  margin: 0 auto;
+  border: 1px solid var(--line);
+  background: var(--ivory-dim);
+  padding: 28px 26px;
+}
+
+.question-form label {
+  display: block;
+  margin: 0 0 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--ebony);
+}
+
+.question-form input[type="text"],
+.question-form input[type="email"],
+.question-form textarea {
+  display: block;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 11px 12px;
+  font: inherit;
+  color: var(--ink);
+  background: var(--ivory);
+  border: 2px solid var(--line-strong);
+  border-radius: 2px;
+}
+
+.question-form textarea {
+  resize: vertical;
+}
+
+.question-form input:focus-visible,
+.question-form textarea:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+}
+
+.question-form .btn {
+  cursor: pointer;
+  font-family: var(--sans);
+}
+
+.form-status {
+  margin: 14px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.form-status.is-success {
+  color: var(--brass-dark);
+}
+
+.form-status.is-error {
+  color: var(--wine);
+}
+
+/* ---------------- Figures (same look as the home keyboard frame) ---------------- */
+
+.figure {
+  margin: 28px 0 0;
+  max-width: 640px;
+}
+
+.figure img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.figure+.btn {
+  margin-top: 28px;
+}
+
+.figure figcaption {
+  margin-top: 10px;
+  font-size: 0.85rem;
+  color: var(--brass-dark);
+  text-align: center;
+}
+
+/* ---------------- Accessibility: skip link (hidden until focused) ---------------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 20;
+  padding: 10px 16px;
+  background: var(--ebony);
+  color: var(--ivory);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+/* ---------------- Form validation messages ---------------- */
+
+.field-error {
+  display: block;
+  margin: -12px 0 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--wine);
+}
+
+.field-error:empty {
+  display: none;
+}
+
+.question-form input[aria-invalid="true"],
+.question-form textarea[aria-invalid="true"] {
+  border-color: var(--wine);
+}
+
+.form-note {
+  margin: 10px 0 0;
+  font-size: 0.85rem;
+  color: var(--brass-dark);
+}
+
+/* ---------------- Mobile: keep text off the screen edges (phones only) ---------------- */
+
+@media (max-width: 680px) {
+
+  .hero.container,
+  .section.container {
+    padding-left: 20px;
+    padding-right: 20px;
   }
 }
