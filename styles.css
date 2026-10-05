@@ -239,6 +239,12 @@ p {
   gap: 22px;
 }
 
+.chord-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
 .card {
   border: 1px solid var(--line);
   background: var(--ivory-dim);
@@ -447,20 +453,20 @@ p {
   text-align: center;
 }
 
-/* ---------------- Accessibility: skip link (hidden until focused) ---------------- */
+/* ---------------- Accessibility Page Centered---------------- */
 
-.skip-link {
-  position: absolute;
-  left: -9999px;
-  top: 0;
-  z-index: 20;
-  padding: 10px 16px;
-  background: var(--ebony);
-  color: var(--ivory);
+.accessibility-page {
+  text-align: center;
 }
 
-.skip-link:focus {
-  left: 0;
+.accessibility-page .section-head {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.accessibility-page .section-head p {
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* ---------------- Form validation messages ---------------- */

@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn Piano for Beginners — Piano Tutorial</title>
-  <meta name="description" content="Learn piano from the ground up: keyboard basics, note names, theory, and chords.">
+  <title>Questions - Piano Tutorial</title>
+  <meta name="description" content="Have a question about learning piano? Send it in and we'll get back to you.">
   <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,37 +16,79 @@
   <link rel="icon" href="images/favicon.png">
 </head>
 
-<strong>This is the Questions page.</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-ligula eget dolor.
-Aenean massa. Cum sociis
-natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
-quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id,
-lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.
-Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis
-magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">Piano Tutorial</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="basics.html">Basics</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="theory.html">Theory</a></li>
+          <li><a href="chords.html">Chords</a></li>
+          <li><a href="questions.html" aria-current="page">Questions</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>&copy; 2026 Piano Tutorial. A free, self-paced guide for new players.</p>
-    <nav aria-label="Footer">
-      <ul class="nav-links">
-        <li><a href="basics.html">Basics</a></li>
-        <li><a href="notes.html">Notes</a></li>
-        <li><a href="theory.html">Theory</a></li>
-        <li><a href="chords.html">Chords</a></li>
-        <li><a href="questions.html">Questions</a></li>
-      </ul>
-    </nav>
-  </div>
-</footer>
+  <main id="main">
+    <section class="hero container" style="padding-top:48px;">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Have a question?</h1>
+      <p class="lede">Stuck on a lesson or curious about something? Send your question below and we'll get back to you
+        by email.</p>
+    </section>
 
-<script src="script.js"></script>
+    <div class="section container" style="border-top:none; padding-top:0;">
+      <form class="question-form" id="question-form" action="https://formsubmit.co/tmartins2@ivytech.edu" method="POST">
+        <!-- form submit settings here-->
+        <input type="hidden" name="_subject" value="New question from Piano Tutorial">
+        <input type="hidden" name="_template" value="table">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+        <label for="name">Your name</label>
+        <input type="text" id="name" name="name" maxlength="80" autocomplete="name" aria-describedby="name-error"
+          required>
+        <span class="field-error" id="name-error"></span>
+
+        <label for="email">Your email</label>
+        <input type="email" id="email" name="email" maxlength="120" autocomplete="email" aria-describedby="email-error"
+          required>
+        <span class="field-error" id="email-error"></span>
+
+        <label for="message">Your question</label>
+        <textarea id="message" name="message" rows="6" maxlength="2000" aria-describedby="message-error"
+          required></textarea>
+        <span class="field-error" id="message-error"></span>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+        <p class="form-note">We only use your name and email to reply to your question.</p>
+      </form>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Piano Tutorial. A free, self-paced guide for new players.</p>
+      <nav aria-label="Footer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="basics.html">Basics</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="theory.html">Theory</a></li>
+          <li><a href="chords.html">Chords</a></li>
+          <li><a href="accessibility.html">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 
 </html>

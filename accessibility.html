@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accessibility - Piano Tutorial</title>
+  <meta name="description" content="Learn about the accessibility features built into the Piano Tutorial website.">
+  <meta name="robots" content="index, follow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;1,500;1,600&family=Public+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="images/favicon.png">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html">Piano Tutorial</a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="basics.html">Basics</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="theory.html">Theory</a></li>
+          <li><a href="chords.html">Chords</a></li>
+          <li><a href="questions.html">Questions</a></li>
+          <li><a href="accessibility.html" aria-current="page">Accessibility</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main" class="accessibility-page">
+    <section class="hero container" style="padding-top:48px;">
+      <p class="eyebrow">Website accessibility</p>
+      <h1>Accessibility at Piano Tutorial</h1>
+      <p class="lede">Piano Tutorial is designed to make learning piano information easier to access, navigate, and
+        understand for as many users as possible.</p>
+    </section>
+
+    <section class="section container" style="border-top:none;">
+      <div class="section-head">
+        <h2>Keyboard and screen reader support</h2>
+        <p>The website uses semantic HTML elements such as headings, navigation, sections, lists, tables, labels,
+          buttons, and forms. This structure helps assistive technologies such as screen readers understand the
+          organization of each page. A “Skip to main content” link is available at the beginning of every page so
+          keyboard users can move directly to the main content without repeatedly moving through the navigation.</p>
+        <p>Interactive controls, including the mobile navigation button and form fields, have accessible labels or
+          states. The navigation button communicates whether the menu is expanded, and the question form provides status
+          and validation messages that can be announced by assistive technology.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Images and alternative text</h2>
+        <p>Informational images used throughout the lessons include descriptive alternative text. The alternative text
+          explains the important information shown in diagrams such as the piano keyboard groups, grand staff, C major
+          scale, and triad diagram. This allows users who cannot see an image to understand its purpose and content
+          through a screen reader.</p>
+        <p>Images are also placed within meaningful figures and captions where additional explanation is helpful.
+          Decorative interface elements do not depend on images alone to communicate essential information.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Color and visual readability</h2>
+        <p>The website uses a high-contrast dark text and light background for most reading content. The primary text
+          color provides strong contrast against the site's light ivory background, helping text remain readable for
+          users with low vision or color-vision differences.</p>
+        <p>Color is not the only way important information is communicated. Links, buttons, headings, labels, borders,
+          and text provide additional visual or structural cues. Visible keyboard focus indicators are also provided so
+          users can identify the currently focused link, button, or form control.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Forms and error messages</h2>
+        <p>The Questions page uses labels that are directly associated with each form field, making the name, email, and
+          question fields easier to identify with a screen reader or keyboard. The form also provides clear validation
+          messages when information is missing or invalid.</p>
+        <p>When a field has an error, the page identifies the problem and marks the field as invalid. After submission,
+          the form provides a live status message such as “Sending...” or a success or error message so users can
+          understand what happened without relying only on a visual change.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Responsive and reduced-motion features</h2>
+        <p>The layout is responsive and adjusts for smaller screens. On mobile devices, the navigation changes to a menu
+          button so the site's pages remain accessible without requiring a wide screen.</p>
+        <p>The website also respects the user's <code>prefers-reduced-motion</code> setting. When reduced motion is
+          requested by the operating system or browser, transitions and smooth scrolling are disabled to reduce
+          unnecessary animation.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Accessibility testing</h2>
+        <p>Accessibility tools can help identify potential WCAG issues, but automated tools cannot evaluate every
+          accessibility requirement. For example, a tool can detect whether an image has alt text, while a person must
+          determine whether that alt text accurately communicates the image's meaning.</p>
+        <p>For a more comprehensive evaluation, the <a href="https://wave.webaim.org/" target="_blank"
+            rel="noopener noreferrer">WAVE Evaluation Tool</a> can be used to check the website for many common
+          accessibility issues. Manual keyboard testing and screen-reader testing can also help identify problems that
+          automated testing may not detect.</p>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-head">
+        <h2>Screen readers</h2>
+        <p>Piano Tutorial is structured to work with common screen readers, including NVDA and JAWS on Windows,
+          VoiceOver on Mac and iOS, and TalkBack on Android. Users can use their platform's keyboard shortcuts, touch
+          controls, or gestures to move through headings, links, form fields, and other content.</p>
+        <p>Accessibility is an ongoing process. If you encounter an accessibility problem while using Piano Tutorial,
+          please use the <a href="questions.html">Questions page</a> to let us know.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; 2026 Piano Tutorial. A free, self-paced guide for new players.</p>
+      <nav aria-label="Footer">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="basics.html">Basics</a></li>
+          <li><a href="notes.html">Notes</a></li>
+          <li><a href="theory.html">Theory</a></li>
+          <li><a href="chords.html">Chords</a></li>
+          <li><a href="questions.html">Questions</a></li>
+        </ul>
+      </nav>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

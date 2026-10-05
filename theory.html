@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Learn Piano for Beginners — Piano Tutorial</title>
+  <title>Theory - Piano Tutorial</title>
   <meta name="description" content="Learn piano from the ground up: keyboard basics, note names, theory, and chords.">
   <meta name="robots" content="index, follow">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,31 +16,108 @@
   <link rel="icon" href="images/favicon.png">
 </head>
 
-<strong>This is the Theory page.</strong> Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-ligula eget dolor.
-Aenean massa. Cum sociis
-natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque
-eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium.
-Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula,
-porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue.
-Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem
-quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id,
-lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante.
-Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis
-magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,
+<header class="site-header">
+  <div class="container">
+    <a class="logo" href="index.html">Piano Tutorial</a>
+    <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="notes.html">Notes</a></li>
+        <li><a href="theory.html" aria-current="page">Theory</a></li>
+        <li><a href="chords.html">Chords</a></li>
+        <li><a href="questions.html">Questions</a></li>
+        <li><a href="accessibility.html">Accessibility</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero container" style="padding-top:48px;">
+    <p class="eyebrow">Lesson three</p>
+    <h1>Why some notes sound right together</h1>
+    <p class="lede">Theory isn't a separate subject from playing - it's a short explanation for patterns your ear
+      already notices. Three ideas cover most of what you need early on.</p>
+  </section>
+
+  <section class="section container" style="border-top:none;">
+    <div class="section-head">
+      <h2>The C major scale</h2>
+      <p>Play every white key from C to the next C. That's the <a href="https://en.wikipedia.org/wiki/Major_scale"
+          target="_blank" rel="noopener noreferrer">C major scale</a> - seven notes, no sharps or flats, built from a
+        fixed pattern of whole and half steps: W-W-H-W-W-W-H.</p>
+    </div>
+    <figure class="figure">
+      <img src="images/whole and half key steps.png"
+        alt="Eight white piano keys from C to C, labeled with whole steps (W) and half steps (H) between each pair of keys">
+    </figure>
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <h2>Intervals</h2>
+      <p>An <a href="https://en.wikipedia.org/wiki/Interval_(music)" target="_blank"
+          rel="noopener noreferrer">interval</a> is the distance between two notes. A few are worth knowing by ear
+        immediately.</p>
+    </div>
+    <table class="ref-table">
+      <thead>
+        <tr>
+          <th>Interval</th>
+          <th>Example</th>
+          <th>Sounds like</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Major 3rd</td>
+          <td>C to E</td>
+          <td>Bright, "happy" - the sound of a major chord</td>
+        </tr>
+        <tr>
+          <td>Minor 3rd</td>
+          <td>C to E♭</td>
+          <td>Darker, "sad" - the sound of a minor chord</td>
+        </tr>
+        <tr>
+          <td>Perfect 5th</td>
+          <td>C to G</td>
+          <td>Open and stable - the backbone of most chords</td>
+        </tr>
+        <tr>
+          <td>Octave</td>
+          <td>C to C</td>
+          <td>Same note, higher pitch</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section container">
+    <div class="section-head">
+      <h2>Key signatures</h2>
+      <p>A key signature tells you which notes are consistently sharp or flat throughout a piece, so they don't need to
+        be marked every time. C major has none - it's the easiest place to start, and every other key is a variation on
+        the same seven-note pattern, shifted to a new starting note.</p>
+    </div>
+    <a class="btn btn-primary" href="chords.html">Next: build your first chords</a>
+  </section>
+
+</main>
 
 <footer class="site-footer">
   <div class="container">
     <p>&copy; 2026 Piano Tutorial. A free, self-paced guide for new players.</p>
     <nav aria-label="Footer">
       <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
         <li><a href="basics.html">Basics</a></li>
         <li><a href="notes.html">Notes</a></li>
-        <li><a href="theory.html">Theory</a></li>
         <li><a href="chords.html">Chords</a></li>
         <li><a href="questions.html">Questions</a></li>
+        <li><a href="accessibility.html">Accessibility</a></li>
       </ul>
     </nav>
   </div>
