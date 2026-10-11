@@ -139,7 +139,7 @@ p {
   display: none;
   background: none;
   border: 2px solid var(--line-strong);
-  width: 40px;
+  width: 46px;
   height: 36px;
   font-size: 1.2rem;
   line-height: 1;
@@ -502,5 +502,127 @@ p {
   .section.container {
     padding-left: 20px;
     padding-right: 20px;
+  }
+}
+
+/* Interactive keyboard (Notes page only below) */
+.pk-panel {
+  background: var(--ivory-dim);
+  border: 2px solid var(--ebony);
+  padding: 34px 28px 22px;
+}
+
+.pk-board {
+  position: relative;
+  height: clamp(120px, 24vw, 210px);
+  border: 1.5px solid var(--ebony);
+  background: var(--ivory);
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pk-whites {
+  display: flex;
+  height: 100%;
+}
+
+.pk-key {
+  appearance: none;
+  -webkit-appearance: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.pk-white {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  height: 100%;
+  background: var(--ivory);
+  border: 0;
+  border-right: 1.5px solid var(--ebony);
+  border-radius: 0;
+  transition: background-color 0.08s;
+}
+
+.pk-white:last-child {
+  border-right: 0;
+}
+
+.pk-white.is-down {
+  background: #e9dcc2;
+}
+
+.pk-black {
+  position: absolute;
+  top: 0;
+  width: 4.32%;
+  height: 60%;
+  z-index: 2;
+  background: var(--ebony);
+  border: 0;
+  border-radius: 0;
+  transition: background-color 0.08s;
+}
+
+.pk-black.is-down {
+  background: #5a4a3a;
+}
+
+.pk-key:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: -3px;
+  z-index: 3;
+}
+
+.pk-mc-dot {
+  position: absolute;
+  left: 50%;
+  bottom: 22%;
+  width: 9px;
+  height: 9px;
+  margin-left: -4.5px;
+  border-radius: 50%;
+  background: var(--brass);
+  pointer-events: none;
+}
+
+.pk-mc-label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 4px;
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.8rem;
+  line-height: 1;
+  color: var(--brass-dark);
+  pointer-events: none;
+}
+
+.pk-caption {
+  margin: 22px 0 0 10px;
+  font-size: 0.95rem;
+  color: var(--brass-dark);
+}
+
+@media (max-width: 640px) {
+  .pk-panel {
+    padding: 22px 12px 16px;
+  }
+
+  .pk-mc-label {
+    font-size: 0.6rem;
+  }
+
+  .pk-caption {
+    margin-left: 4px;
+    font-size: 0.85rem;
   }
 }
