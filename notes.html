@@ -106,7 +106,63 @@
         </tbody>
       </table>
     </section>
+    <!-- ------------------------------------------------------------------------------------------------------------------- -->
 
+    <!-- sources for interaciton below:
+        https://developer.mozilla.org/en-US/docs/Web/API/Pointer_events
+        https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API
+     -->
+    <section class="section container">
+      <div class="section-head">
+        <h2>Try the keyboard</h2>
+        <p>Click any key to hear it. Hold the mouse button down and slide across the keys to play them one after
+          another.</p>
+      </div>
+      <div class="pk-panel">
+        <div class="pk-board" role="group" aria-label="Interactive piano keyboard, two octaves">
+          <div class="pk-whites">
+            <button type="button" class="pk-key pk-white" data-midi="48" aria-label="C3" title="C3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="50" aria-label="D3" title="D3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="52" aria-label="E3" title="E3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="53" aria-label="F3" title="F3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="55" aria-label="G3" title="G3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="57" aria-label="A3" title="A3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="59" aria-label="B3" title="B3"></button>
+            <button type="button" class="pk-key pk-white" data-midi="60" aria-label="C4 (middle C)" title="C4"><span
+                class="pk-mc-dot" aria-hidden="true"></span><span class="pk-mc-label" aria-hidden="true">middle
+                C</span></button>
+            <button type="button" class="pk-key pk-white" data-midi="62" aria-label="D4" title="D4"></button>
+            <button type="button" class="pk-key pk-white" data-midi="64" aria-label="E4" title="E4"></button>
+            <button type="button" class="pk-key pk-white" data-midi="65" aria-label="F4" title="F4"></button>
+            <button type="button" class="pk-key pk-white" data-midi="67" aria-label="G4" title="G4"></button>
+            <button type="button" class="pk-key pk-white" data-midi="69" aria-label="A4" title="A4"></button>
+            <button type="button" class="pk-key pk-white" data-midi="71" aria-label="B4" title="B4"></button>
+          </div>
+          <button type="button" class="pk-key pk-black" data-midi="49" style="left:calc(7.1429% - 2.16%);"
+            aria-label="C sharp 3, also D flat 3" title="C♯3 / D♭3"></button>
+          <button type="button" class="pk-key pk-black" data-midi="51" style="left:calc(14.2857% - 2.16%);"
+            aria-label="D sharp 3, also E flat 3" title="D♯3 / E♭3"></button>
+          <button type="button" class="pk-key pk-black" data-midi="54" style="left:calc(28.5714% - 2.16%);"
+            aria-label="F sharp 3, also G flat 3" title="F♯3 / G♭3"></button>
+          <button type="button" class="pk-key pk-black" data-midi="56" style="left:calc(35.7143% - 2.16%);"
+            aria-label="G sharp 3, also A flat 3" title="G♯3 / A♭3"></button>
+          <button type="button" class="pk-key pk-black" data-midi="58" style="left:calc(42.8571% - 2.16%);"
+            aria-label="A sharp 3, also B flat 3" title="A♯3 / B♭3"></button>
+          <button type="button" class="pk-key pk-black" data-midi="61" style="left:calc(57.1429% - 2.16%);"
+            aria-label="C sharp 4, also D flat 4" title="C♯4 / D♭4"></button>
+          <button type="button" class="pk-key pk-black" data-midi="63" style="left:calc(64.2857% - 2.16%);"
+            aria-label="D sharp 4, also E flat 4" title="D♯4 / E♭4"></button>
+          <button type="button" class="pk-key pk-black" data-midi="66" style="left:calc(78.5714% - 2.16%);"
+            aria-label="F sharp 4, also G flat 4" title="F♯4 / G♭4"></button>
+          <button type="button" class="pk-key pk-black" data-midi="68" style="left:calc(85.7143% - 2.16%);"
+            aria-label="G sharp 4, also A flat 4" title="G♯4 / A♭4"></button>
+          <button type="button" class="pk-key pk-black" data-midi="70" style="left:calc(92.8571% - 2.16%);"
+            aria-label="A sharp 4, also B flat 4" title="A♯4 / B♭4"></button>
+        </div>
+        <p class="pk-caption">Two octaves, twelve keys each — the pattern repeats the length of the keyboard.</p>
+      </div>
+    </section>
+    <!-- ------------------------------------------------------------------------------------------------------------------- -->
     <section class="section container">
       <div class="section-head">
         <h2>Black keys: sharps and flats</h2>
@@ -159,6 +215,141 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Interactive keyboard (Notes page only)
+    (function () {
+      var board = document.querySelector(".pk-board");
+      if (!board) return;
+
+      var AudioCtx = window.AudioContext || window.webkitAudioContext;
+      var ctx = null, master = null;
+      var voices = new Map();   // key element -> voice
+      var pointers = new Map(); // pointerId -> key element
+
+      function ensureAudio() {
+        if (!AudioCtx) return false;
+        if (!ctx) {
+          ctx = new AudioCtx();
+          var comp = ctx.createDynamicsCompressor();
+          master = ctx.createGain();
+          master.gain.value = 0.55;
+          master.connect(comp);
+          comp.connect(ctx.destination);
+        }
+        if (ctx.state === "suspended") ctx.resume();
+        return true;
+      }
+
+      // A piano-like tone: a few decaying harmonics through a closing low-pass filter
+      function startVoice(midi) {
+        var freq = 440 * Math.pow(2, (midi - 69) / 12);
+        var t = ctx.currentTime;
+        var decay = Math.max(1.6, 4.2 - (midi - 48) * 0.06); // lower notes ring longer
+
+        var release = ctx.createGain();      // used when the key is let go
+        var env = ctx.createGain();          // the note's own decay
+        var filter = ctx.createBiquadFilter();
+        filter.type = "lowpass";
+        filter.frequency.setValueAtTime(Math.min(freq * 9, 7000), t);
+        filter.frequency.exponentialRampToValueAtTime(Math.max(freq * 2.2, 500), t + 1.4);
+
+        env.gain.setValueAtTime(0.0001, t);
+        env.gain.linearRampToValueAtTime(0.9, t + 0.006);
+        env.gain.exponentialRampToValueAtTime(0.22, t + 0.35);
+        env.gain.exponentialRampToValueAtTime(0.0001, t + decay);
+
+        filter.connect(env);
+        env.connect(release);
+        release.connect(master);
+
+        var partials = [[1, 1], [2, 0.55], [3, 0.3], [4, 0.16], [5, 0.09], [6, 0.05]];
+        var oscs = partials.map(function (p, i) {
+          var o = ctx.createOscillator();
+          var g = ctx.createGain();
+          o.type = "sine";
+          o.frequency.value = freq * p[0];
+          o.detune.value = i === 0 ? 0 : (i % 2 ? 3 : -3);
+          g.gain.value = p[1] * 0.35;
+          o.connect(g);
+          g.connect(filter);
+          o.start(t);
+          o.stop(t + decay + 0.1);
+          return o;
+        });
+        return { release: release, oscs: oscs };
+      }
+
+      function stopVoice(v) {
+        var t = ctx.currentTime;
+        v.release.gain.cancelScheduledValues(t);
+        v.release.gain.setValueAtTime(1, t);
+        v.release.gain.setTargetAtTime(0, t, 0.09);
+        v.oscs.forEach(function (o) { try { o.stop(t + 0.6); } catch (e) { } });
+      }
+
+      function press(key) {
+        if (voices.has(key)) return;
+        key.classList.add("is-down");
+        if (ensureAudio()) voices.set(key, startVoice(parseInt(key.dataset.midi, 10)));
+        else voices.set(key, null);
+      }
+
+      function lift(key) {
+        if (!voices.has(key)) return;
+        var v = voices.get(key);
+        voices.delete(key);
+        key.classList.remove("is-down");
+        if (v) stopVoice(v);
+      }
+
+      board.addEventListener("pointerdown", function (e) {
+        var key = e.target.closest(".pk-key");
+        if (!key || (e.pointerType === "mouse" && e.button !== 0)) return;
+        e.preventDefault();
+        if (key.hasPointerCapture && key.hasPointerCapture(e.pointerId)) key.releasePointerCapture(e.pointerId);
+        pointers.set(e.pointerId, key);
+        press(key);
+      });
+
+      board.addEventListener("pointerover", function (e) {
+        var key = e.target.closest(".pk-key");
+        var current = pointers.get(e.pointerId);
+        if (!key || !current || current === key) return;
+        lift(current);          // slide from one key to the next
+        pointers.set(e.pointerId, key);
+        press(key);
+      });
+
+      function endPointer(e) {
+        var key = pointers.get(e.pointerId);
+        if (!key) return;
+        pointers.delete(e.pointerId);
+        lift(key);
+      }
+      window.addEventListener("pointerup", endPointer);
+      window.addEventListener("pointercancel", endPointer);
+
+      board.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+
+      // Keyboard access: Tab to a key, then Enter or Space to play it
+      board.addEventListener("keydown", function (e) {
+        var key = e.target.closest(".pk-key");
+        if (!key || e.repeat || (e.key !== "Enter" && e.key !== " ")) return;
+        e.preventDefault();
+        press(key);
+      });
+      board.addEventListener("keyup", function (e) {
+        var key = e.target.closest(".pk-key");
+        if (!key || (e.key !== "Enter" && e.key !== " ")) return;
+        e.preventDefault();
+        lift(key);
+      });
+      board.addEventListener("focusout", function (e) {
+        var key = e.target.closest(".pk-key");
+        if (key && ![...pointers.values()].includes(key)) lift(key);
+      });
+    })();
+  </script>
 </body>
 
 </html>
